@@ -7,6 +7,7 @@
       "discord_btn": "Continuer avec Discord",
       "separator": "ou par identifiant",
       "email_label": "Email ou pseudo",
+      "email_placeholder": "Username",
       "password_label": "Mot de passe",
       "forgot_password": "Oublié ?",
       "remember_me": "Se souvenir de moi",
