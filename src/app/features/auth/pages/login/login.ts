@@ -11,6 +11,7 @@ import { HlmCard } from '@spartan-ng/helm/card';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { AuthService } from '../../services/auth.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ import { AuthService } from '../../services/auth.service';
     HlmInput,
     HlmLabel,
     HlmCard,
+    TranslocoPipe,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
