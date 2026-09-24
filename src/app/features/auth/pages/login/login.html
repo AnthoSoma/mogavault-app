@@ -1,0 +1,150 @@
+<div class="flex min-h-screen w-full flex-col items-center justify-center p-4">
+  <!-- En-tête : Logo & Titres -->
+  <div class="mb-6 flex flex-col items-center gap-2 text-center">
+    <div
+      class="flex size-11 items-center justify-center rounded-xl bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/20"
+    >
+      <!-- Icône manette / vault -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="6" x2="10" y1="12" y2="12" />
+        <line x1="8" x2="8" y1="10" y2="14" />
+        <line x1="15" x2="15.01" y1="13" y2="13" />
+        <line x1="18" x2="18.01" y1="11" y2="11" />
+        <rect width="20" height="12" x="2" y="6" rx="6" />
+      </svg>
+    </div>
+    <h1 class="text-foreground text-2xl font-bold tracking-tight">MogaVault</h1>
+    <p class="text-muted-foreground text-xs">Ton hub gaming centralisé</p>
+  </div>
+
+  <!-- Carte de connexion -->
+  <div
+    hlmCard
+    class="border-border/40 bg-card/60 w-full max-w-[420px] p-6 backdrop-blur-md"
+  >
+    <!-- Boutons OAuth -->
+    <div class="flex flex-col gap-3">
+      <button
+        hlmBtn
+        variant="outline"
+        class="border-border/60 bg-muted/20 hover:bg-muted/40 w-full justify-center gap-2 text-xs"
+      >
+        <span class="size-2 rounded-full bg-sky-400"></span>
+        Continuer avec Steam
+      </button>
+      <button
+        hlmBtn
+        variant="outline"
+        class="border-border/60 bg-muted/20 hover:bg-muted/40 w-full justify-center gap-2 text-xs"
+      >
+        <span class="size-2 rounded-full bg-indigo-400"></span>
+        Continuer avec Discord
+      </button>
+    </div>
+
+    <!-- Séparateur -->
+    <div class="relative my-6 text-center text-xs">
+      <div class="absolute inset-0 flex items-center">
+        <div class="border-border/30 w-full border-t"></div>
+      </div>
+      <span
+        class="bg-card text-muted-foreground relative px-2 text-[10px] tracking-wider uppercase"
+      >
+        ou par identifiant
+      </span>
+    </div>
+
+    <!-- Formulaire classique -->
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="flex flex-col gap-4"
+    >
+      <div class="flex flex-col gap-1.5">
+        <label hlmLabel for="login" class="text-foreground text-xs"
+          >Email ou pseudo</label
+        >
+        <input
+          hlmInput
+          id="login"
+          type="text"
+          placeholder="nyxshade"
+          formControlName="login"
+          class="border-border/40 bg-muted/20 text-xs focus-visible:ring-sky-500/30"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-center justify-between">
+          <label hlmLabel for="password" class="text-foreground text-xs"
+            >Mot de passe</label
+          >
+          <a
+            routerLink="/auth/forgot-password"
+            class="text-xs text-sky-400 hover:underline"
+          >
+            Oublié ?
+          </a>
+        </div>
+        <input
+          hlmInput
+          id="password"
+          type="password"
+          placeholder="••••••••"
+          formControlName="password"
+          class="border-border/40 bg-muted/20 text-xs focus-visible:ring-sky-500/30"
+        />
+      </div>
+
+      <!-- Remember me -->
+      <div class="flex items-center gap-2 pt-1">
+        <input
+          id="rememberMe"
+          type="checkbox"
+          formControlName="rememberMe"
+          class="border-border/40 bg-muted/30 size-3.5 rounded text-sky-500 focus:ring-sky-500/30"
+        />
+        <label
+          for="rememberMe"
+          class="text-muted-foreground cursor-pointer text-xs select-none"
+        >
+          Se souvenir de moi
+        </label>
+      </div>
+
+      <!-- Bouton d'action principal -->
+      <button
+        type="submit"
+        hlmBtn
+        class="mt-2 w-full bg-sky-500 font-medium text-slate-950 transition-colors hover:bg-sky-400"
+        [disabled]="isLoading()"
+      >
+        @if (isLoading()) {
+          Connexion...
+        } @else {
+          Se connecter
+        }
+      </button>
+
+      <!-- Lien d'inscription -->
+      <p class="text-muted-foreground mt-2 text-center text-xs">
+        Pas de compte ?
+        <a
+          routerLink="/auth/register"
+          class="font-medium text-sky-400 hover:underline"
+        >
+          Créer un profil
+        </a>
+      </p>
+    </form>
+  </div>
+</div>
