@@ -8,9 +8,12 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './core/i18n/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
+import { APP_ENV } from './core/config/env.token';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: APP_ENV, useValue: environment },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(),
