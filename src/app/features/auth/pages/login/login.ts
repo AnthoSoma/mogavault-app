@@ -21,7 +21,7 @@ import {
   pattern,
   required,
 } from '@angular/forms/signals';
-import { FieldError } from '../../../../ui/components/atoms/field-error/field-error';
+import { FieldError } from '../../../../shared/components/atoms/field-error/field-error';
 
 @Component({
   selector: 'moga-login',
