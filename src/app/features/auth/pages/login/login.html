@@ -2,9 +2,9 @@
   [title]="'auth.login.title' | transloco"
   [subtitle]="'auth.login.subtitle' | transloco"
 >
-  <!-- Le contenu du formulaire -->
+  <!-- Form content -->
   <div hlmCard class="border-border/40 bg-card/60 p-6 backdrop-blur-md">
-    <!-- Boutons OAuth -->
+    <!-- OAuth Buttons -->
     <div class="flex flex-col gap-3">
       <button
         hlmBtn
@@ -24,7 +24,7 @@
       </button>
     </div>
 
-    <!-- Séparateur -->
+    <!-- Separator -->
     <div class="relative my-6 text-center text-xs">
       <div class="absolute inset-0 flex items-center">
         <div class="border-border/30 w-full border-t"></div>
@@ -36,12 +36,13 @@
       </span>
     </div>
 
-    <!-- Formulaire classique -->
+    <!-- Form -->
     <form
-      [formGroup]="loginForm"
+      [formRoot]="loginForm"
       (ngSubmit)="onSubmit()"
       class="flex flex-col gap-4"
     >
+      <!--      Login-->
       <div class="flex flex-col gap-1.5">
         <label hlmLabel for="login" class="text-foreground text-xs">{{
           'auth.login.email_label' | transloco
@@ -50,15 +51,21 @@
           hlmInput
           id="login"
           type="text"
+          [formField]="loginForm.login"
           [placeholder]="'auth.login.email_placeholder' | transloco"
-          formControlName="login"
           class="border-border/40 bg-muted/20 text-xs focus-visible:ring-sky-500/30"
           [class.border-destructive]="
-            loginForm.controls.login.invalid && loginForm.controls.login.touched
+            loginForm.login().invalid() && loginForm.login().touched()
           "
         />
+        @if (loginForm.login().invalid() && loginForm.login().touched()) {
+          <span class="text-destructive text-[10px]">{{
+            'validation.user.username.required' | transloco
+          }}</span>
+        }
       </div>
 
+      <!--      Password-->
       <div class="flex flex-col gap-1.5">
         <div class="flex items-center justify-between">
           <label hlmLabel for="password" class="text-foreground text-xs">{{
@@ -76,13 +83,15 @@
           id="password"
           type="password"
           placeholder="••••••••"
-          formControlName="password"
+          [formField]="loginForm.password"
           class="border-border/40 bg-muted/20 text-xs focus-visible:ring-sky-500/30"
           [class.border-destructive]="
-            loginForm.controls.password.invalid &&
-            loginForm.controls.password.touched
+            loginForm.password().invalid() && loginForm.password().touched()
           "
         />
+        @if (
+          loginForm.password().invalid() && loginForm.password().touched()
+        ) {}
       </div>
 
       <!-- Remember me -->
@@ -90,7 +99,7 @@
         <input
           id="rememberMe"
           type="checkbox"
-          formControlName="rememberMe"
+          [formField]="loginForm.rememberMe"
           class="border-border/40 bg-muted/30 size-3.5 rounded text-sky-500 focus:ring-sky-500/30"
         />
         <label
@@ -101,7 +110,7 @@
         </label>
       </div>
 
-      <!-- Bouton d'action principal -->
+      <!-- Submit button -->
       <button
         type="submit"
         hlmBtn
@@ -115,7 +124,7 @@
         }
       </button>
 
-      <!-- Lien d'inscription -->
+      <!-- Register links -->
       <p class="text-muted-foreground mt-2 text-center text-xs">
         {{ 'auth.login.no_account' | transloco }}
         <a
