@@ -18,6 +18,7 @@ import {
   FormField,
   FormRoot,
   minLength,
+  pattern,
   required,
 } from '@angular/forms/signals';
 
@@ -56,9 +57,22 @@ export class Login {
 
   // Form
   protected readonly loginForm = form(this.loginModel, schema => {
-    required(schema.login);
-    required(schema.password);
-    minLength(schema.password, 8);
+    // Username constraints
+    required(schema.login, { message: 'validation.user.username.required' });
+    // Password constraints
+    required(schema.password, {
+      message: 'validation.user.password.required',
+    });
+    minLength(schema.password, 8, {
+      message: 'validation.user.password.size',
+    });
+    pattern(
+      schema.password,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+      {
+        message: 'validation.user.password.pattern',
+      },
+    );
   });
 
   protected onSubmit(): void {

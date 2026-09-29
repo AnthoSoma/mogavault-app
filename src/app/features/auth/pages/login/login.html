@@ -89,9 +89,13 @@
             loginForm.password().invalid() && loginForm.password().touched()
           "
         />
-        @if (
-          loginForm.password().invalid() && loginForm.password().touched()
-        ) {}
+        @if (loginForm.password().invalid() && loginForm.password().touched()) {
+          <div class="text-destructive flex flex-col gap-1 text-[10px]">
+            @for (error of loginForm.password().errors(); track error.kind) {
+              <span>{{ error.message | transloco }}</span>
+            }
+          </div>
+        }
       </div>
 
       <!-- Remember me -->
