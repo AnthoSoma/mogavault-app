@@ -53,6 +53,9 @@
           [placeholder]="'auth.login.email_placeholder' | transloco"
           formControlName="login"
           class="border-border/40 bg-muted/20 text-xs focus-visible:ring-sky-500/30"
+          [class.border-destructive]="
+            loginForm.controls.login.invalid && loginForm.controls.login.touched
+          "
         />
       </div>
 
@@ -75,6 +78,10 @@
           placeholder="••••••••"
           formControlName="password"
           class="border-border/40 bg-muted/20 text-xs focus-visible:ring-sky-500/30"
+          [class.border-destructive]="
+            loginForm.controls.password.invalid &&
+            loginForm.controls.password.touched
+          "
         />
       </div>
 
