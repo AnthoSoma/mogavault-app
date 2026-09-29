@@ -1,0 +1,41 @@
+<div class="flex min-h-screen w-full flex-col items-center justify-center p-4">
+  <!-- En-tête : Logo & Titres -->
+  <div class="mb-6 flex flex-col items-center gap-2 text-center">
+    <div
+      class="flex size-11 items-center justify-center rounded-xl bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/20"
+    >
+      <!-- Icône manette -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="6" x2="10" y1="12" y2="12" />
+        <line x1="8" x2="8" y1="10" y2="14" />
+        <line x1="15" x2="15.01" y1="13" y2="13" />
+        <line x1="18" x2="18.01" y1="11" y2="11" />
+        <rect width="20" height="12" x="2" y="6" rx="6" />
+      </svg>
+    </div>
+
+    <h1 class="text-foreground text-2xl font-bold tracking-tight">
+      {{ title() }}
+    </h1>
+
+    @if (subtitle()) {
+      <p class="text-muted-foreground text-xs">
+        {{ subtitle() }}
+      </p>
+    }
+  </div>
+
+  <!-- Zone de projection pour la carte du formulaire -->
+  <div class="w-full max-w-[420px]">
+    <ng-content></ng-content>
+  </div>
+</div>

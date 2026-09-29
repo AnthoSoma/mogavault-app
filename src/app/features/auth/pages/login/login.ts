@@ -12,9 +12,10 @@ import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { AuthService } from '../../services/auth.service';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { AuthLayout } from '../../components/auth-layout/auth-layout';
 
 @Component({
-  selector: 'app-login',
+  selector: 'moga-login',
   imports: [
     ReactiveFormsModule,
     RouterLink,
@@ -23,6 +24,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
     HlmLabel,
     HlmCard,
     TranslocoPipe,
+    AuthLayout,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
