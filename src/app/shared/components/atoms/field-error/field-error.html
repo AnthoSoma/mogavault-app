@@ -1,7 +1,7 @@
 @if (state().invalid() && state().touched()) {
   <div class="text-destructive mt-1 flex flex-col gap-1 text-[10px]">
-    @for (error of state().errors(); track error.kind) {
-      <span>{{ error.message | transloco }}</span>
+    @for (error of mappedErrors(); track error.kind) {
+      <span>{{ error.message | transloco: error.params }}</span>
     }
   </div>
 }
