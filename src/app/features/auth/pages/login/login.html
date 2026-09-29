@@ -58,11 +58,8 @@
             loginForm.login().invalid() && loginForm.login().touched()
           "
         />
-        @if (loginForm.login().invalid() && loginForm.login().touched()) {
-          <span class="text-destructive text-[10px]">{{
-            'validation.user.username.required' | transloco
-          }}</span>
-        }
+        <!-- Error handler-->
+        <moga-field-error [state]="loginForm.login()" />
       </div>
 
       <!--      Password-->
@@ -89,13 +86,8 @@
             loginForm.password().invalid() && loginForm.password().touched()
           "
         />
-        @if (loginForm.password().invalid() && loginForm.password().touched()) {
-          <div class="text-destructive flex flex-col gap-1 text-[10px]">
-            @for (error of loginForm.password().errors(); track error.kind) {
-              <span>{{ error.message | transloco }}</span>
-            }
-          </div>
-        }
+        <!-- Error handler-->
+        <moga-field-error [state]="loginForm.password()" />
       </div>
 
       <!-- Remember me -->

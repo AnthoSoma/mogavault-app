@@ -21,6 +21,7 @@ import {
   pattern,
   required,
 } from '@angular/forms/signals';
+import { FieldError } from '../../../../shared/ui/field-error/field-error';
 
 @Component({
   selector: 'moga-login',
@@ -36,6 +37,7 @@ import {
     FormRoot,
     FormsModule,
     FormField,
+    FieldError,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
